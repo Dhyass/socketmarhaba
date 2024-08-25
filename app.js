@@ -2,9 +2,11 @@ import { Server } from "socket.io";
 
 import dotenv from 'dotenv'; // library to use .env file
 
+dotenv.config();
+
 const io = new Server({
     cors: {
-        origin: "http://localhost:5173",
+        origin: process.env.CLIENTURL,
     },
 });
 
@@ -47,9 +49,6 @@ io.on("connection", (socket) => {
         removeUser(socket.id); 
     });
 });
-
-
-dotenv.config();
 
 const PORT = process.env.PORT ; // user the port 8080 or 6013
 
